@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Administration console</h2>
+<p>Restricted area. Only admins reach this page.</p>
+
+<h3>Preview a notification template</h3>
+<p>Use the sandboxed previewer for any template before saving. This runs the
+template through Jinja's sandbox, so dangerous expressions are rejected.</p>
+<form id="preview-form">
+  <textarea name="template" rows="4" cols="60" placeholder="{{ '{{ incident.title }}' }}"></textarea><br>
+  <button type="submit">Preview</button>
+</form>
+<pre id="preview-out"></pre>
+
+<h3>Restore a settings snapshot</h3>
+<p>Snapshots are signed with the per-instance key and restored via the API.</p>
+
+<script>
+document.getElementById('preview-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const tpl = e.target.template.value;
+  const r = await fetch('/api/v1/administration/templates/preview', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({template: tpl, context: {}})
+  });
+  const j = await r.json();
+  document.getElementById('preview-out').textContent = JSON.stringify(j, null, 2);
+});
+</script>
+{% endblock %}

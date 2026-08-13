@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SentinelHub</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --panel: #171a23;
+      --panel-2: #1e222e;
+      --border: #2a2f3d;
+      --text: #e6e9ef;
+      --muted: #97a0b3;
+      --accent: #58a6ff;
+      --accent-2: #3fb950;
+      --warn: #d29922;
+      --danger: #f85149;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header.topbar {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: 0.85rem 1.6rem;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .brand { font-weight: 600; font-size: 1.1rem; letter-spacing: .2px; }
+    .brand .dot { color: var(--accent); }
+    nav.main { display: flex; gap: .35rem; flex-wrap: wrap; }
+    nav.main a {
+      color: var(--muted); padding: .35rem .7rem; border-radius: 8px; font-size: .9rem;
+    }
+    nav.main a:hover { background: var(--panel-2); color: var(--text); text-decoration: none; }
+    .spacer { flex: 1; }
+    .who { color: var(--muted); font-size: .85rem; }
+    .who b { color: var(--text); }
+    main { max-width: 1040px; margin: 1.6rem auto; padding: 0 1.2rem; }
+    .card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.2rem 1.4rem; margin-bottom: 1.2rem;
+    }
+    .card h2 { margin: 0 0 .6rem; font-size: 1.15rem; }
+    .card h3 { margin: 1rem 0 .4rem; font-size: 1rem; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .pill {
+      display: inline-block; padding: .15rem .55rem; border-radius: 999px;
+      font-size: .75rem; border: 1px solid var(--border); color: var(--muted);
+    }
+    .pill.up { color: var(--accent-2); border-color: #1d3a26; background: #112417; }
+    .pill.degraded { color: var(--warn); border-color: #3a2f12; background: #241e0c; }
+    .pill.down { color: var(--danger); border-color: #3a1717; background: #241010; }
+    .btn {
+      display: inline-block; padding: .5rem 1rem; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--panel-2); color: var(--text); cursor: pointer; font-size: .9rem;
+    }
+    .btn:hover { border-color: var(--accent); text-decoration: none; }
+    ul.clean { list-style: none; padding-left: 0; }
+    ul.clean li { padding: .3rem 0; border-bottom: 1px solid var(--border); }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    table.tbl th, table.tbl td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--border); }
+    table.tbl th { color: var(--muted); font-weight: 500; }
+    input, textarea, select {
+      background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+      border-radius: 8px; padding: .5rem .6rem; font-size: .9rem; width: 100%; max-width: 420px;
+    }
+    label { display: block; margin: .6rem 0 .25rem; color: var(--muted); font-size: .85rem; }
+    .muted { color: var(--muted); }
+    .err { color: var(--danger); }
+    footer.foot { color: var(--muted); font-size: .8rem; text-align: center; padding: 2rem 1rem 3rem; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">Sentinel<span class="dot">Hub</span></span>
+    <nav class="main">
+      <a href="/">Status</a>
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+      {% if session.user_id %}
+        <a href="{{ url_for('pages.dashboard') }}">Dashboard</a>
+        <a href="/search">Search</a>
+        <a href="/metrics/dashboard">Metrics</a>
+        <a href="/billing">Billing</a>
+        <a href="/notifications">Notifications</a>
+        <a href="/profile">Profile</a>
+        {% if session.role == 'admin' %}<a href="/administration">Administration</a>{% endif %}
+        <a href="/logout">Logout</a>
+      {% endif %}
+    </nav>
+    <span class="spacer"></span>
+    {% if session.user_id %}
+      <span class="who">Hi <b>{{ session.user_id }}</b> · {{ session.role }} / {{ session.plan }}</span>
+    {% endif %}
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="foot">SentinelHub — self-hosted observability &amp; alerting</footer>
+</body>
+</html>

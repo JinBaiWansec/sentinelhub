@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Notification preferences</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr><th>Channel</th><th>Enabled</th><th>Endpoint</th></tr>
+  {% for p in prefs %}
+  <tr><td>{{ p.channel }}</td><td>{{ p.enabled }}</td><td>{{ p.endpoint }}</td></tr>
+  {% endfor %}
+</table>
+<p>Preference changes are submitted as a JSON POST to
+<code>/api/v1/notifications/preferences</code> (see the API docs). The stored
+endpoint is used only by the server-side dispatch worker.</p>
+<p><a href="/dashboard">Back</a></p>
+{% endblock %}

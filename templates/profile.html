@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Profile</h2>
+<form method="post">
+  <p>Username: {{ user.username }} (read-only)</p>
+  <p>Email: <input name="email" value="{{ user.email }}"></p>
+  <p>Timezone: <input name="timezone" value="UTC"></p>
+  <p>Theme: <input name="theme" value="light"></p>
+  <p><button type="submit">Save</button></p>
+</form>
+<p><a href="/dashboard">Back</a></p>
+{% endblock %}

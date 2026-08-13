@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Monitor search</h2>
+<form method="get">
+  <input name="q" value="{{ q }}">
+  <button type="submit">Search</button>
+</form>
+<ul>
+  {% for r in rows %}
+  <li><span class="mon">{{ r.name }}</span> — {{ r.status }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

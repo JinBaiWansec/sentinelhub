@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card" style="max-width: 460px;">
+  <h2>Create account</h2>
+  {% if error %}<p class="err">{{ error }}</p>{% endif %}
+  <form method="post">
+    <label for="username">Username</label>
+    <input id="username" name="username" placeholder="username">
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" placeholder="password">
+    <label for="email">Email</label>
+    <input id="email" name="email" placeholder="you@example.com">
+    <div style="margin-top:1rem;">
+      <button class="btn" type="submit">Create account</button>
+    </div>
+  </form>
+  <p class="muted" style="margin-top:1rem;">New accounts are created as <b>member</b> (no admin).</p>
+</div>
+{% endblock %}

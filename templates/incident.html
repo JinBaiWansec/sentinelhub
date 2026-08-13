@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Incident #{{ incident.id }}: {{ incident.title }}</h2>
+  <div class="mon">{{ incident.body | safe }}</div>
+</div>
+<div class="card">
+  <h3>Add a note</h3>
+  <form method="post">
+    <textarea name="comment" rows="4" style="max-width: 100%;"></textarea>
+    <div style="margin-top:.6rem;"><button class="btn" type="submit">Post</button></div>
+  </form>
+</div>
+{% endblock %}

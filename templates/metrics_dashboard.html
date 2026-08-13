@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Metrics</h2>
+<p>Monitors owned: {{ summary.monitor_count }}</p>
+<p>Incident resolution rate: {{ summary.incident_resolution_rate }}%</p>
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr><th>Monitor</th><th>Status</th><th>Uptime %</th><th>Avg latency</th></tr>
+  {% for m in summary.monitors %}
+  <tr>
+    <td>{{ m.name }}</td>
+    <td>{{ m.status }}</td>
+    <td>{{ m.uptime }}</td>
+    <td>{{ m.avg_latency }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<p><a href="/dashboard">Back</a></p>
+{% endblock %}

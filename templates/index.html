@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Public status</h2>
+<ul>
+  {% for m in monitors %}
+  <li><span class="mon">{{ m.name }}</span> —
+      <span class="{{ m.status }}">{{ m.status }}</span></li>
+  {% endfor %}
+</ul>
+{% endblock %}

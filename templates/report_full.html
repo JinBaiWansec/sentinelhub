@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Report {{ report.id }}</title></head>
+<body>
+<h1>SentinelHub report #{{ report.id }}</h1>
+<p>Owner: {{ report.owner }} &middot; Created: {{ report.created }}</p>
+<p>Monitors: {{ monitor_count }} &middot; Incidents: {{ incident_count }}</p>
+<h2>Monitors</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr><th>Name</th><th>Status</th><th>URL</th></tr>
+  {% for m in monitors %}<tr><td>{{ m.name }}</td><td>{{ m.status }}</td><td>{{ m.url }}</td></tr>{% endfor %}
+</table>
+<h2>Recent incidents</h2>
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr><th>ID</th><th>Title</th><th>Status</th></tr>
+  {% for i in incidents %}<tr><td>{{ i.id }}</td><td>{{ i.title }}</td><td>{{ i.status }}</td></tr>{% endfor %}
+</table>
+</body>
+</html>

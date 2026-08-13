@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Runtime state — regenerated on first boot (init_db). Never commit a local
+# deployment's signing secret / sqlite DB / worker output.
+instance/
+*.db
+*.sqlite3
+
+# Local exploit/test artifacts
+pwned_*.txt
+chain_c_marker.txt
+
+# OS / editors
+.DS_Store
+*.swp
+.idea/
+.vscode/

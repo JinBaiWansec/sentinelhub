@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  sentinelhub:
+    build: .
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    environment:
+      # Optional: inject a stable Flask session key. When empty, a random key
+      # is generated per boot (fine for the exam flow).
+      - SENTINELHUB_SESSION_SECRET=${SENTINELHUB_SESSION_SECRET:-}
+      # Optional: pin the CTF flag. When empty, a fresh random flag is written
+      # to /flag.txt at container start.
+      - CTF_FLAG=${CTF_FLAG:-}

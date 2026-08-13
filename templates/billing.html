@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Billing</h2>
+<h3>Usage</h3>
+<ul>
+  <li>Monitors: {{ usage.monitors_used }} / {{ usage.monitors_quota }}</li>
+  <li>Alerts: {{ usage.alerts_used }} / {{ usage.alerts_quota }}</li>
+</ul>
+<h3>Plan tiers</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr><th>Plan</th><th>Price (cents)</th><th>Monitors</th><th>Alerts/month</th></tr>
+  {% for name, t in tiers.items() %}
+  <tr><td>{{ name }}</td><td>{{ t.price_cents }}</td><td>{{ t.monitors }}</td><td>{{ t.alerts_per_month }}</td></tr>
+  {% endfor %}
+</table>
+<h3>Invoices</h3>
+<table border="1" cellpadding="6" cellspacing="0">
+  <tr><th>Period start</th><th>Period end</th><th>Amount</th><th>Currency</th><th>Status</th></tr>
+  {% for inv in invoices %}
+  <tr><td>{{ inv.period_start }}</td><td>{{ inv.period_end }}</td><td>{{ inv.amount_cents }}</td><td>{{ inv.currency }}</td><td>{{ inv.status }}</td></tr>
+  {% endfor %}
+</table>
+<p><a href="/dashboard">Back</a></p>
+{% endblock %}

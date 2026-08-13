@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Dashboard</h2>
+  <p class="muted">Logged in as <b>{{ user.username }}</b> ({{ user.role }} / {{ user.plan }}).</p>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>Monitoring</h3>
+    <ul class="clean">
+      <li><a href="/search">Monitor search</a></li>
+      <li><a href="/metrics/dashboard">Metrics dashboard</a></li>
+      <li><a href="/incidents/1">Incident #1</a></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Account</h3>
+    <ul class="clean">
+      <li><a href="/billing">Billing &amp; invoices</a></li>
+      <li><a href="/notifications">Notification preferences</a></li>
+      <li><a href="/profile">Profile</a></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Reports</h3>
+    <ul class="clean">
+      <li><a href="/reports/view/1">Sample report</a></li>
+    </ul>
+  </div>
+</div>
+
+{% if user.role in ('operator','admin') %}
+  <div class="card">
+    <h3>Operator tools (API)</h3>
+    <p class="muted">Integrations sync, report bundle export, snapshot restore.</p>
+  </div>
+{% endif %}
+{% endblock %}
