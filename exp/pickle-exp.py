@@ -49,7 +49,7 @@ BASE_URL = "http://127.0.0.1:5000"
 PROXY = "http://127.0.0.1:8080" 
 MY_USER = f"liam_{random.randint(1000, 9999)}"
 MY_PASS = "liam123"
-USE_PROXY = True 
+USE_PROXY = False 
 proxies = {
         "http": PROXY,
         "https": PROXY,  # 如果目标是 HTTPS 也加上
