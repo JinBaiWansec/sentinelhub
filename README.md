@@ -28,6 +28,7 @@ Default at http://localhost:5000. Seeded accounts: `admin/admin123`,
   notifications, reports — the usual product surface.
 - After a successful exploit, `cat /flag.txt` in the container.
 - `exp/` has the exploit scripts for the three chains.
+- Why it's built this way: [DESIGN.md](DESIGN.md).
 
 ## License
 

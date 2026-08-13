@@ -21,6 +21,7 @@ python wsgi.py
 - 19 个 blueprint、69 条路由、3400 行 Python,监控、计费、通知、报告那一套业务都有。
 - 打穿后容器里 `cat /flag.txt`。
 - `exp/` 是三条链的利用脚本。
+- 设计说明见 [DESIGN.zh.md](DESIGN.zh.md)。
 
 ## License
 
